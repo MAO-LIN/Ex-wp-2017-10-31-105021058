@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 
 import javax.swing.*;
@@ -35,13 +37,14 @@ public class Frame2 extends JFrame {
     private JTextField OpFont=new JTextField("");
     private JTextField OpSize=new JTextField("12");
     private Random rdm=new Random(System.currentTimeMillis());
+    private LoginFrame lfm;
 
-    public Frame2(LoginFrame lfm){
-        lfm = new LoginFrame();
+    public Frame2(LoginFrame LoginFrame){
+        lfm = LoginFrame;
         initComp();
     }
     private void initComp(){
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setBounds(screenW/2-600/2,screenH/2-450/2,600,450);
         this.setJMenuBar(jmb);
         this.setContentPane(jdktpane);
@@ -82,6 +85,13 @@ public class Frame2 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jdktpane.add(jTextinFrame);
+            }
+        });
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Frame2.this.setVisible(false);
+                lfm.setVisible(true);
             }
         });
 
