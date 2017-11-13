@@ -295,17 +295,4 @@ public class Frame2 extends JFrame {
             }
         }
     }
-    private void readin(String fn, JTextComponent pane)
-    {
-        try
-        {
-            FileReader fr = new FileReader(fn);
-            pane.read(fr, null);
-            fr.close();
-        }
-        catch (IOException e)
-        {
-            System.err.println(e);
-        }
-    }
 }
